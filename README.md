@@ -1,6 +1,6 @@
 # VibesGetter
 
-Downloader for various vibes.
+Retrieves vibes from various corners of the internet for processing and remixing.
 
 ## Installation
 
