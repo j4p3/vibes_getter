@@ -22,7 +22,20 @@ defmodule Reddit do
 
   @spec post_source(Map) :: atom
   defp post_source(post_data) do
-
+    case post_data["domain"] do
+      "imgur.com" ->
+        # @todo regex out uri + append extensions until something works
+        Map.get(post_data, "url_overridden_by_dest")
+      "i.imgur.com" ->
+        Map.get(post_data, "url_overridden_by_dest")
+      "i.redd.it" ->
+        Map.get(post_data, "url_overridden_by_dest")
+      "gfycat.com" ->
+        # @todo regex out uri frmo thumnail_url
+        "https://giant.gyfcat.com/#{}.mp4"
+      "v.redd.it" ->
+        get_in(post_data, "secure_media", "reddit_video", "fallback_url")
+    end
   end
 
   @spec type_for_post(Map) :: atom
@@ -32,8 +45,8 @@ defmodule Reddit do
         :video
       post_data["is_meta"] ->
         :text
-      post_z
+      post_data["is_media"] ->
+        nil
     end
-    post_data["is_media"]
   end
 end
