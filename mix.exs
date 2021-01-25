@@ -19,7 +19,8 @@ defmodule VibesGetter.MixProject do
 
   defp deps do
     [
-      {:reddit, "~>0.1.0"}
+      {:reddit, "~>0.1.0"},
+      {:httpoison, "~> 1.8"}
     ]
   end
 end
